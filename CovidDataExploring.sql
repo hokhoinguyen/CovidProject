@@ -22,10 +22,10 @@ Order By 1, 2
 
 -- Xem các quốc gia có tỉ lệ bị nhiễm bệnh so với dân số của các quốc gia đó:
 -- Thông tin bao gồm: location, population, total_cases max (HighestInfection), InfectedPercentage max.
-Select location, population, Max(Convert(float, total_cases)) as HighestInfection, Max(FORMAT(
+Select location, population, date, Max(Convert(float, total_cases)) as HighestInfection, Max(FORMAT(
 				(NULLIF(Convert(float, total_cases), 0) / population) * 100, 'N2')) AS InfectedPercentage
 From CovidDeaths
-Group By location, population
+Group By location, population, date
 Order By InfectedPercentage desc
 
 -- Xem các quốc gia có số người tử vong cao so với dân số các quốc gia đó:
